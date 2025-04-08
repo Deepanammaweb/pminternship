@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NammaWeb Internship Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(#e0ffe0, #ccffcc);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .highlight {
+      color: #d60000;
+      font-weight: bold;
+    }
+    .blink {
+      color: green;
+      font-weight: bold;
+      animation: blinker 1.2s linear infinite;
+    }
+    @keyframes blinker {
+      50% { opacity: 0; }
+    }
+    .price {
+      font-size: 24px;
+      color: #006400;
+      margin: 10px 0;
+    }
+    .qr-code {
+      margin: 20px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+    input, select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    label {
+      font-weight: bold;
+    }
+    .footer {
+      font-size: 10px;
+      color: #555;
+      margin-top: 30px;
+    }
+  </style>
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const college = document.getElementById('college').value;
+      const field = document.getElementById('field').value;
+      const phone = document.getElementById('phone').value;
+
+      if (name && college && field && phone) {
+        const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc-ZRHgpLS0q7cT6C0EeODfGU9rRoKVwwwXJ-G8SBSUpj33jA/formResponse";
+        const data = new URLSearchParams();
+        data.append("entry.473844347", name);
+        data.append("entry.1529363767", college);
+        data.append("entry.228790001", field);
+        data.append("entry.1840056742", phone);
+
+        fetch(formUrl, {
+          method: "POST",
+          mode: "no-cors",
+          body: data
+        }).then(() => {
+          alert("Form submitted successfully! Now proceed to payment.");
+          document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
+        }).catch(() => {
+          alert("Submission failed. Please try again.");
+        });
+      } else {
+        alert("Please fill all details before submitting.");
+      }
+    }
+
+    window.onload = function() {
+      alert("🚨 LIMITED SEATS! Get registered for PM Internship Program - Skill India Initiative 🚨");
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to NammaWeb Internship Registration</h1>
+    <p class="blink">🔥 Get Your Internship @149₹ 🔥</p>
+    <p>We assist you in getting a <strong>stipend</strong> for your internship!</p>
+    <p>NammaWeb provides you <strong>Courses + Internship Training</strong> to prepare you for the corporate world.</p>
+    <p>Our mission is to help students gain knowledge, get placed, and feel comfortable in corporate society. Once shortlisted, you'll receive a stipend from us.</p>
+    <p><span class="highlight">1st Come 1st Serve - Limited Seats Only!</span></p>
+    <p class="price">Registration Fee: ₹149</p>
+
+    <form onsubmit="handleFormSubmit(event)">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="college">College Name:</label>
+      <input type="text" id="college" name="college" required>
+
+      <label for="field">Field of Interest:</label>
+      <input type="text" id="field" name="field" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+      <button type="submit" class="btn">Submit Details</button>
+    </form>
+
+    <div id="payment-section">
+      <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=mallikarjunns007-1@oksbi&pn=NammaWeb&am=149&cu=INR&tn=Registration%20Fee&size=200x200" alt="Scan to Pay ₹149" />
+      </div>
+      <a class="btn" href="upi://pay?pa=mallikarjunns007-1@oksbi&pn=NammaWeb&am=149&cu=INR&tn=Registration%20Fee">Pay Now ₹149</a>
+    </div>
+
+    <a class="btn" href="https://services.india.gov.in/service/detail/register-for-pm-internship-scheme-by-ministry-of-corporate-affairs" target="_blank">Explore Official PM Internship Opportunities</a>
+
+    <div class="footer">
+      <p>Selected students will be hired for internship. We ensure your data is secure. All transactions are protected and encrypted.</p>
+      <p>Terms & Conditions apply. Seats are limited. Non-refundable registration.</p>
+    </div>
+  </div>
+</body>
+</html>
